@@ -7,22 +7,30 @@ router.get('/',(req,res)=>{
     res.render('home/index')
 })
 
-//login section
+//sign-up section
 router.get('/signUp',(req,res)=>{
     res.render('home/signUp',{user:new User()})
 })
 
-//sigin-up section
+//sign-up section
 router.post('/',async (req,res)=>{
     const user = new User({
-        name: req.body.name
+        name: req.body.name,
+        email:req.body.email,
+        password: req.body.password,
+        rePassword: req.body.rePassword,
     })
     try {
-        const newUser = await user.save()
-        //res.redirect(`home/$newUser.id}`)
-         res.redirect(`home`)
-         console.log('account created')
-    } catch {
+        if(req.body.password == req.body.rePassword)
+        {
+            const newUser = await user.save()
+            //res.redirect(`home/$newUser.id}`)
+            res.redirect(`home`)
+            console.log('account created')
+        }else{
+            res.send("password doesn't match")
+        }
+    }catch {
             res.render('home/signUp',{
              user: user,
              errorMessage:'Error creating account'

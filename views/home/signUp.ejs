@@ -1,7 +1,21 @@
 <h1>sign-up</h1>
 <form action="/home" method="POST">
-    <label for="name">name</label>
-    <input type="text" name="name" id="name" value="<%= user.name  %> "> 
+    <label for="name">Name</label>
+    <br>
+    <input type="text" name="name" id="name" value="<%= user.name  %> ">
+    <br>
+    <label for="email">Email</label>
+    <br>
+    <input type="email" name="email" id="email">
+    <br>
+    <label for="password">Password</label>
+    <br>
+    <input type="password" name="password" id="password">
+    <br> 
+    <label for="rePassword">Re-Enter Password</label>
+    <br>
+    <input type="password" name="rePassword" id="rePassword">
+    <br> 
     <a href="/home">cancel</a>
     <button type="submit">create</button>
 </form>
