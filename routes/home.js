@@ -14,28 +14,39 @@ router.get('/signUp',(req,res)=>{
 
 //sign-up section
 router.post('/',async (req,res)=>{
+    var n;
     const user = new User({
         name: req.body.name,
         email:req.body.email,
         password: req.body.password,
         rePassword: req.body.rePassword,
     })
-    try {
-        if(req.body.password == req.body.rePassword)
-        {
-            const newUser = await user.save()
-            //res.redirect(`home/$newUser.id}`)
-            res.redirect(`home`)
-            console.log('account created')
+    n=req.body.password.length;
+   // try {
+        if(req.body.name!==""&&req.body.email!=="")
+        { 
+            if(n>=8){
+                if(req.body.password === req.body.rePassword)
+                {
+                    const newUser = await user.save()
+                    //res.redirect(`home/$newUser.id}`)
+                    res.redirect(`home`)
+                    console.log('account created')
+                }else{
+                res.send("password doesn't match...")
+                }
+            }else{
+                res.send("password should have 8 char or more then 8 char..")
+            }
         }else{
-            res.send("password doesn't match")
+            res.send("Please fill all fields...")
         }
-    }catch {
-            res.render('home/signUp',{
-             user: user,
-             errorMessage:'Error creating account'
-        })
-    }
+    //}catch {
+      //      res.render('home/signUp',{
+        //     user: user,
+          //   errorMessage:'Error creating account'
+       // })
+    //}
     //user.save((err,newUser)=>{
     //     if(err){
     //             console.log(err)
