@@ -23,7 +23,7 @@ router.post('/',async (req,res)=>{
     })
     n=req.body.password.length;
    // try {
-        if(req.body.name!==""&&req.body.email!=="")
+        if((req.body.email!=="") && (req.body.name!==" "))
         { 
             if(n>=8){
                 if(req.body.password === req.body.rePassword)
