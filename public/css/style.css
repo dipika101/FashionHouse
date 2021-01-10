@@ -1,0 +1,156 @@
+@import "/public/css/style.css";
+
+nav,
+header,
+footer{
+    display: block;
+}
+body{
+    line-height: 1;
+    margin: 0;
+    font-family: sans-serif;
+}
+label{
+    font-size: 35px;
+    font-weight: bold;
+}
+nav{
+    width: 100%;
+    margin: 0;
+}
+nav ul{
+    background-color: #e2e7e2;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+
+ul.topnav li{
+    list-style: none;
+    float: left;
+}
+
+ul.topnav li.rightnav{
+    list-style: none;
+    float: right;
+}
+
+ul.topnav li a {
+    display: block;
+    color: rgba(18, 233, 18, 0.904);
+    text-decoration: none;
+    min-height: 16px;
+    text-align: center;
+    padding: 14px;
+    text-transform: uppercase;
+}
+ul.topnav li a:hover{
+    background-color: #d8161f;
+    color: #ffffff;
+}
+ul.topnav li.dropdownicon{
+    display: none;
+}
+.submenu1{
+    display: none;
+}
+.topnav li.rightnav:hover .submenu1{
+    display: block;
+    position: absolute;
+    background-color: #e2e7e2;
+    margin-left: -15px;
+}
+.topnav b li.rightnav:hover .submenu1 ul{
+    display: block;
+    margin: 10px;
+    text-transform: uppercase;
+}
+.topnav b li.rightnav:hover .submenu1 ul li{
+    width: 150px;
+    padding: 10px;
+    border-bottom: 1px dotted rgba(98, 98, 100, 0.836);
+    background: transparent;
+    text-align: left;
+    border-radius: 0px;
+}
+.topnav b li.rightnav:hover .submenu1 ul li:last-child{
+    border-bottom: none;
+}
+html, body {
+    background-image: linear-gradient(to right, rgba(51, 252, 10, 0.945), rgb(69, 30, 209));
+}
+
+/* div.form1{
+    border-style: ridge;
+    text-align: center;
+    background-image: linear-gradient(to right,rgba(8, 51, 243, 0), rgb(37, 7, 207)); 
+} */
+.signup h1{
+    color: white;
+    background-image: linear-gradient(to right,rgb(69, 30, 209) ,rgba(51, 252, 10, 0.945));
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.signup{
+    width: 600px;
+    padding: 5px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #191919;
+    text-align: center;
+}
+.signup input[type = "text"], .signup input[type = "email"], .signup input[type = "password"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #3498bd;
+    padding: 14px 10px;
+    width: 400px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+.signup .form1 div{
+    text-align: center;
+    padding-left: 200px;
+}
+.signup input[type = "text"]:focus, .signup input[type = "email"]:focus, .signup input[type = "password"]:focus{
+    width: 500px;
+    border-color: green;
+}
+.form1 button{
+    border: 0;
+    background: none;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid green;
+    padding: 14px 20px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+} 
+.form1 button:hover{
+    background: green;
+    color: #ffffff;
+}  
+.form1 button a:link{
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+    
+}
+.form1 button a:hover{
+    color: white;
+}
+.signup .form1 label{
+    color: white;
+    transition: 0.75s;
+}

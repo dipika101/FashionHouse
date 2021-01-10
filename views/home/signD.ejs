@@ -1,9 +1,9 @@
 
 <body>
     <div class="signup">
-    <h1>sign-up</h1>
+    <h1>sign-up as designer</h1>
     <div class="form1">
-    <form action="/home" method="POST">
+    <form action="/designer" method="POST" enctype="multipart/form-data">
         <br>
         <input type="text" name="name" id="name"  placeholder="Name">
         <br>
@@ -13,9 +13,12 @@
         <br> 
         <input type="password" name="rePassword" id="rePassword" placeholder="Re-Enter Password">
         <br> 
+        <input type="text" name="bio" id="bio" placeholder="Enter your bio over here">
+        <br>
+        <label for="image"><h3>Image of your work</h3> </label>
+        <div><input type="file" name="image" id="image" placeholder="image"></div>
         <button><a href="/home">CANCEL</a></button>
         <button type="submit">CREATE</button>
     </form>
 </div></div>
 </body>
-

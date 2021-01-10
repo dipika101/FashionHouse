@@ -1,48 +1,59 @@
 const express = require('express')
+const multer = require('multer')
+const path=require('path')
 const router = express.Router()
-const User = require('../models/user')
-
-//home route
-router.get('/',(req,res)=>{
-    res.render('home/index')
+const Designer = require('../models/designer')
+const uploadPath=path.join('public',Designer.imageBasePath)
+const imageMimeTypes=['image/jpeg','image/png','image/gif']
+const upload=multer({
+    dest:uploadPath,
+    fileFilter:(req, file, callback)=>{
+        callback(null,imageMimeTypes.includes(file.mimetype))
+    }
 })
+//home route
+//  router.get('/',(req,res)=>{
+//      res.send('designers')
+//  })
 
 //sign-up section
 router.get('/signUp',(req,res)=>{
-    res.render('home/signUp',{user:new User()})
+    res.render('home/signD',{designer:new Designer()})
 })
 
 //sign-up section
-router.post('/',async (req,res)=>{
-    var n;
-    const user = new User({
+router.post('/',upload.single('image'),async (req,res)=>{
+    var n=req.body.password.length;
+    const fileName = req.file != null ? req.file.filename : null
+    const designer = new Designer({
         name: req.body.name,
         email:req.body.email,
         password: req.body.password,
         rePassword: req.body.rePassword,
+        bio: req.body.bio,
+        imageRefWorksName: fileName
     })
-    n=req.body.password.length;
    try {
         if((req.body.email!=="") && (req.body.name!==" "))
         { 
-            if(n>=8){
+             if(n>=8){
                 if(req.body.password === req.body.rePassword)
                 {
-                    const newUser = await user.save()
+                    const newDesigner = await designer.save()
                     //res.redirect(`home/$newUser.id}`)
                     res.redirect(`home`)
                     console.log('account created')
                 }else{
                 res.send("password doesn't match...")
                 }
-            }else{
-                res.send("password should have 8 char or more then 8 char..")
-            }
+             }else{
+                 res.send("password should have 8 char or more then 8 char..")
+             }
         }else{
             res.send("Please fill all fields...")
         }
     }catch {
-            res.render('home/signUp',{
+            res.render('home/signD',{
              user: user,
              errorMessage:'Error creating account'
         })
