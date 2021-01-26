@@ -33,7 +33,7 @@ router.post('/',upload.single('image'),async (req,res)=>{
         const designer = new Designer({
             name: req.body.name,
             email:req.body.email,
-            password: req.body.password,
+            password: hashedPass,
             bio: req.body.bio,
             imageRefWorksName: fileName
         })
