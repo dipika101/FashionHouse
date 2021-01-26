@@ -17,21 +17,20 @@ router.get('/signUp',(req,res)=>{
 //sign-up section
 router.post('/',async (req,res)=>{
     var n=req.body.password.length;
-    var hashpass;
-    var salt=await bcrypt.genSalt(10)
-    await bcrypt.hash(req.body.password,salt,function(err,hashedPass){
-            if(err){
-                console.log(err)
-            }
-            else{
-                hashpass=hashedPass
-            }
-        })
-    // })
+    // var hashpass;
+    // var salt=await bcrypt.genSalt(10)
+    // await bcrypt.hash(req.body.password,salt,function(err,hashedPass){
+    //         if(err){
+    //             console.log(err)
+    //         }
+    //         else{
+    //             hashpass=hashedPass
+    //         }
+    //     })
     const user = new User({
         name: req.body.name,
         email:req.body.email,
-        password:hashpass
+        password:req.body.password
     })
     try {
          if((req.body.email!=="") && (req.body.name!==" " && (req.body.name!=='')))
