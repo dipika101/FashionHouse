@@ -27,28 +27,16 @@ router.get('/signUp',(req,res)=>{
 //sign-up section
 router.post('/',upload.single('image'),async (req,res)=>{
     var n=req.body.password.length;
-    // var hashpass;
-    // bcrypt.genSalt(8,function(err,salt){
-    //     bcrypt.hash(req.body.password,10,function(err,hashedPass){
-    //         if(err){
-    //             res.json({
-    //                 error: err
-    //             })
-    //         }
-    //         else{
-    //             hashpass=hashedPass
-    //         }
-    //     })
-    // }) 
-    const fileName = req.file != null ? req.file.filename : null
-    const designer = new Designer({
-        name: req.body.name,
-        email:req.body.email,
-        password: req.body.password,
-        bio: req.body.bio,
-        imageRefWorksName: fileName
-    })
-   try {
+    try {
+        const hashedPass= await  bcrypt.hash(req.body.password,10)
+        const fileName = req.file != null ? req.file.filename : null
+        const designer = new Designer({
+            name: req.body.name,
+            email:req.body.email,
+            password: req.body.password,
+            bio: req.body.bio,
+            imageRefWorksName: fileName
+        })
         if((req.body.email!=="") && (req.body.name!==" "))
         { 
              if(n>=8){
@@ -73,19 +61,7 @@ router.post('/',upload.single('image'),async (req,res)=>{
              errorMessage:'Error creating account'
         })
     }
-    //user.save((err,newUser)=>{
-    //     if(err){
-    //             console.log(err)
-    //             res.render('home/signUp',{
-    //             user: user,
-    //             errorMessage:'Error creating account'
-    //         })
-    //     }else{
-    //         //res.redirect('home/$newUser.id}')
-    //         res.redirect(`home`)
-    //     }
-    // })
-    // 
+    
 })
 
 module.exports=router
