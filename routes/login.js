@@ -16,18 +16,38 @@ router.get('/login',(req,res)=>{
 
 //sign-up section
 router.post('/',async (req,res)=>{
+    try{
     var password=req.body.password;
     var email=req.body.password;
     User.findOne({email:email})
     .then(user=>{
         if(user){
-            //compare password
+            bcrypt.compare(password,User.password, function(error,result){
+                if(error)
+                {
+                    res.json({error})
+                }
+                if(result){
+                    let token= jwt.sign({name: User.name},'verySecretValue',{expiresIn:'2h'})
+                    res.json({
+                        message:'login sucessful',
+                        token
+                    })
+                }else{
+                    res.json({
+                        message:'password do not match!!'
+                    })
+                }
+            })
         }
         else{
             console.log("no user found")
         }
     })
-    
+}catch{
+    res.redirect(``)
+    errorMessage='error in login'
+}
 })
 
 module.exports=router
