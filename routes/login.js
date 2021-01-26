@@ -20,8 +20,8 @@ router.post('/',async (req,res)=>{
     var password=req.body.password;
     var email=req.body.password;
     User.findOne({email:email})
-    .then(user=>{
-        if(user){
+    .then(User=>{
+        if(User){
             bcrypt.compare(password,User.password, function(error,result){
                 if(error)
                 {
