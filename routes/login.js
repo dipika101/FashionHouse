@@ -15,8 +15,8 @@ router.get('/login',(req,res)=>{
 })
 
 //sign-up section
-router.post('/',async (req,res)=>{
-    try{
+router.post('/',(req,res)=>{
+    // try{
     var password=req.body.password;
     var email=req.body.password;
     User.findOne({email:email})
@@ -44,10 +44,10 @@ router.post('/',async (req,res)=>{
             console.log("no user found")
         }
     })
-}catch{
-    res.redirect(``)
-    errorMessage='error in login'
-}
-})
+// }catch{
+//     res.redirect(``)
+//     errorMessage='error in login'
+// }
+// })
 
 module.exports=router
