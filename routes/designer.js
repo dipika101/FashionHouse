@@ -2,7 +2,10 @@ const express = require('express')
 const multer = require('multer')
 const path=require('path')
 const router = express.Router()
+const bcrypt=require("bcryptjs")
+const jwt=require('jsonwebtoken')
 const Designer = require('../models/designer')
+const { JsonWebTokenError } = require('jsonwebtoken')
 const uploadPath=path.join('public',Designer.imageBasePath)
 const imageMimeTypes=['image/jpeg','image/png','image/gif']
 const upload=multer({
@@ -24,12 +27,24 @@ router.get('/signUp',(req,res)=>{
 //sign-up section
 router.post('/',upload.single('image'),async (req,res)=>{
     var n=req.body.password.length;
+    // var hashpass;
+    // bcrypt.genSalt(8,function(err,salt){
+    //     bcrypt.hash(req.body.password,10,function(err,hashedPass){
+    //         if(err){
+    //             res.json({
+    //                 error: err
+    //             })
+    //         }
+    //         else{
+    //             hashpass=hashedPass
+    //         }
+    //     })
+    // }) 
     const fileName = req.file != null ? req.file.filename : null
     const designer = new Designer({
         name: req.body.name,
         email:req.body.email,
         password: req.body.password,
-        rePassword: req.body.rePassword,
         bio: req.body.bio,
         imageRefWorksName: fileName
     })
@@ -54,7 +69,7 @@ router.post('/',upload.single('image'),async (req,res)=>{
         }
     }catch {
             res.render('home/signD',{
-             user: user,
+             designer: designer,
              errorMessage:'Error creating account'
         })
     }
