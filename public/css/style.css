@@ -25,6 +25,13 @@ nav ul{
     padding: 0;
 }
 
+.homeImg1 img{
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 50px;
+    width: 1365px;
+    height: 500px;
+}
 
 ul.topnav li{
     list-style: none;
@@ -156,4 +163,58 @@ html, body {
 .signup .form1 label{
     color: white;
     transition: 0.75s;
+}
+.row{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.row::after{
+    display: table;
+    clear: both;
+    content: "";
+}
+div.box{
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1px rgba(30, 219, 233, 0.068), 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.col-1{
+    width: 33.33%;
+}
+.col-2{
+    width: 25%;
+}
+div.box{
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px 0 rgba(0,0,0,.1);
+}
+div.icon{
+    width: 100%;
+}
+footer.foot{
+    padding-left: 10%;
+    background-color: rgba(211, 228, 231, 0.267);
+}
+footer.foot h1{
+    color: #ffffff;
+    font-size: 35px;
+}
+footer.foot ul{
+    list-style: none;
+    text-align: left;
+    padding-left: 0;
+}
+footer.foot ul li{
+    font-size: 22px;
+    color: #ffffff;
+    line-height: 1.5;
 }
