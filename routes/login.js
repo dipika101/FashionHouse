@@ -3,6 +3,7 @@ const router = express.Router()
 const User = require('../models/user')
 const bcrypt=require('bcryptjs')
 const passport=require('passport')
+const app=express()
 const methodOverride = require('method-override')
 const initializePassport = require("../routes/passport-config")
 const { authenticate } = require('passport')
@@ -15,25 +16,25 @@ router.use(passport.initialize())
 router.use(passport.session())
 router.use(methodOverride('_method'))
 //home route
-router.get('/',(req,res)=>{
+router.get('/',checkAuthonticated,(req,res)=>{
     res.render('home/index',{name : req.user.name})
 })
 
 //sign-up section
-router.get('/login',checkAuthonticated,(req,res)=>{
+router.get('/login',(req,res)=>{
     res.render('home/login')
 })
 
 //sign-up section
 router.post('/login',passport.authenticate('local',{
-    successRedirect: '/home/user',
-    failureRedirect: '/home/login',
+    successRedirect: 'home/user',
+    failureRedirect: 'home/login',
     failureFlash: true
 }))
 
 router.delete('/logout',(req,res)=>{
     req.logOut()
-    req.redirct('home/index')
+    res.redirct('home/index')
 })
 function checkAuthonticated(req, res, next) {
     if(req.isAuthenticated()){
