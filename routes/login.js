@@ -5,7 +5,6 @@ const bcrypt=require('bcryptjs')
 const passport=require('passport')
 // const methodOverride = require('method-override')
 const initializePassport = require("../routes/passport-config")
-const { authenticate } = require('passport')
 initializePassport(
     passport,
     email=>User.find(User => user.email===email),
